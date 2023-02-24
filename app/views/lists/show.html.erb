@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="py-3"><%= @list.name %></h1>
+  <div class="cards">
+    <%@list.movies.each do |movie| %>
+      <div class="card-trip">
+        <img src=<%= movie.poster_url%> />
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= movie.title%> |
+              <%= movie.rating%> <i class="fa-solid fa-star"></i> |
+              <%= link_to "Delete", bookmark_path(@list.bookmarks.find_by(movie: movie)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></h2>
+              <p><%= movie.overview%></p>
+              <p class="fst-italic p-2"><%= @list.bookmarks.find_by(movie: movie).comment%></p>
+            </div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+
+
+  <div class = "py-5">
+  <h1> Add a new bookmark to "<%= @list.name%>" </h1>
+
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie %>
+    <%= f.submit %>
+  <% end %>
+
+  <%= link_to "Back to lists", lists_path, style: "text-decoration: none" %>
+  </div>
+</div>
