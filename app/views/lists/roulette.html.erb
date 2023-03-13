@@ -1,0 +1,13 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80);">
+</div>
+<div class="container mt-5">
+<% movie = @movies.sample%>
+<%= movie.title %>
+
+
+
+<%= link_to "Supprimer le film", bookmark_path(@list.bookmarks.find_by(movie: movie)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+
+<%= link_to "Relancer la roulette", roulette_path(@list), class:"btn btn-primary"%>
+
+</div>

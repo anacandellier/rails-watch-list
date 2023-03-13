@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:create]
  end
  resources :bookmarks, only: [:destroy]
+ get "lists/:id/roulette", to: "lists#roulette", as: :roulette
 end

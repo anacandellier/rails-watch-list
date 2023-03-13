@@ -1,17 +1,55 @@
 require 'open-uri'
 require 'json'
 
+Bookmark.destroy_all
 Movie.destroy_all
+List.destroy_all
 
-# Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
-# Movie.create(title: "The Shawshank Redemption", overview: "Framed in the 1940s for double murder, upstanding banker Andy Dufresne begins a new life at the Shawshank prison", poster_url: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", rating: 8.7)
-# Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic.", poster_url: "https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg", rating: 7.9)
-# Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
-# List.create(name: 'My all time favorite movies')
+list = List.create(name: "Films à voir")
 
+Movie.create(title: "Bullet train")
+Movie.create(title: "Joker")
+Movie.create(title: "Requiem for a dream")
+Movie.create(title: "Eternal Sunshine of the Spotless Mind")
+Movie.create(title: "Burnt")
+Movie.create(title: "Vol au dessus d'un nid de coucou")
+Movie.create(title: "12 hommes en colère")
+Movie.create(title: "Lost in translation")
+Movie.create(title: "Sacré Graal")
+Movie.create(title: "Babylon")
+Movie.create(title: "Novembre")
+Movie.create(title: "Climax")
+Movie.create(title: "Revoir Paris")
+Movie.create(title: "Everything everywhere all at once")
+Movie.create(title: "La liste de Schindler")
+Movie.create(title: "Les 7 samouraïs")
+Movie.create(title: "Casablanca")
+Movie.create(title: "La vie des autres")
+Movie.create(title: "Une séparation")
+Movie.create(title: "Le trou")
+Movie.create(title: "Thelma et Louise")
+Movie.create(title: "Bienvenue à Gattaca")
+Movie.create(title: "Heat")
+Movie.create(title: "Dallas Buyers Club")
+Movie.create(title: "Elephant")
+Movie.create(title: "Gran Torino")
+Movie.create(title: "L’armée des ombres")
+Movie.create(title: "Le dîner de cons")
+Movie.create(title: "La traversée de Paris")
+Movie.create(title: "Au revoir là-haut")
+Movie.create(title: "Plein Soleil")
+Movie.create(title: "Le prénom")
+Movie.create(title: "Les Misérables")
 
-file = JSON.parse(URI.open("http://tmdb.lewagon.com/movie/top_rated").read)
+movies = Movie.all
 
-file["results"].each do |movie|
-  Movie.create(title: movie["title"], overview: movie["overview"], poster_url: "https://image.tmdb.org/t/p/original/#{movie["poster_path"]}")
+movies.each do |movie|
+  Bookmark.create(movie: movie, list: list)
 end
+
+
+# file = JSON.parse(URI.open("http://tmdb.lewagon.com/movie/top_rated").read)
+
+# file["results"].each do |movie|
+#   Movie.create(title: movie["title"], overview: movie["overview"], poster_url: "https://image.tmdb.org/t/p/original/#{movie["poster_path"]}")
+# end

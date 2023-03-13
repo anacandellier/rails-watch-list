@@ -22,6 +22,11 @@ class ListsController < ApplicationController
     end
   end
 
+  def roulette
+    @list = List.find(params[:id])
+    @movies = @list.movies
+  end
+
   private
 
   def list_params

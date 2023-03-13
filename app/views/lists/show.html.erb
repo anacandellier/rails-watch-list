@@ -6,15 +6,16 @@
   </div>
 </div>
 
+
+
 <div class="container">
+<%= link_to "Roulette", roulette_path(@list), class:"btn btn-primary"%>
   <div class="cards">
     <%@list.movies.each do |movie| %>
       <div class="card-trip">
-        <img src=<%= movie.poster_url%> />
           <div class="card-trip-infos">
             <div>
               <h2><%= movie.title%> |
-              <%= movie.rating%> <i class="fa-solid fa-star"></i> |
               <%= link_to "Delete", bookmark_path(@list.bookmarks.find_by(movie: movie)), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></h2>
               <p><%= movie.overview%></p>
               <p class="fst-italic p-2"><%= @list.bookmarks.find_by(movie: movie).comment%></p>
@@ -23,6 +24,7 @@
       </div>
     <% end %>
   </div>
+
 
 
   <div class = "py-5">
